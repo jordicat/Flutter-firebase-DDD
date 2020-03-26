@@ -1,6 +1,8 @@
-# flutter_firebase_ddd_notes
+# Notes APP - Flutter Firebase DDD
 
 A new Flutter project.
+
+https://resocoder.com/2020/03/09/flutter-firebase-ddd-course-1-domain-driven-design-principles/
 
 ## Getting Started
 
