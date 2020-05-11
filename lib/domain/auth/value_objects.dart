@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_firebase_ddd_notes/domain/core/failures.dart';
 import 'package:flutter_firebase_ddd_notes/domain/core/value_objects.dart';
 import 'package:flutter_firebase_ddd_notes/domain/core/value_validators.dart';
