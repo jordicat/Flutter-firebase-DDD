@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_firebase_ddd_notes/domain/core/errors.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'failures.dart';
@@ -8,6 +9,12 @@ import 'failures.dart';
 abstract class ValueObject<T> {
   const ValueObject();
   Either<ValueFailure<T>, T> get value;
+
+  /// Throws [UnxexpectedValueError] containing the [ValueFailure]
+  T getOrCrash() {
+    // id = identity -> same as writing (value) => value
+    return value.fold((f) => throw UnexpectedValueError(f), id);
+  }
 
   bool isValid() => value.isRight();
 
