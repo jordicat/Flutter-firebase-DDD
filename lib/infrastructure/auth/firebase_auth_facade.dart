@@ -3,11 +3,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../domain/auth/auth_failure.dart';
 import '../../domain/auth/i_auth_facade.dart';
 import '../../domain/auth/value_objects.dart';
 
+@lazySingleton
+@RegisterAs(IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
@@ -29,7 +32,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         email: emailAddressString,
         password: passwordString,
       );
-      return Right(unit);
+      return right(unit);
     } on PlatformException catch (e) {
       if (e.code == 'ERROR_EMAIL_ALREADY_IN_USE') {
         return left(const AuthFailure.emailAlreadyInUse());
@@ -51,6 +54,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         email: emailAddressString,
         password: passwordString,
       );
+      return right(unit);
     } on PlatformException catch (e) {
       if (e.code == 'ERROR_WRONG_PASSWORD' ||
           e.code == 'ERROR_USER_NOT_FOUND') {
@@ -66,7 +70,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     try {
       final googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
-        return Left(AuthFailure.cancelledByUser());
+        return left(const AuthFailure.cancelledByUser());
       }
       final googleAuthentication = await googleUser.authentication;
 
