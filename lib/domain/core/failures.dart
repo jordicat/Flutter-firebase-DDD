@@ -16,7 +16,7 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
   }) = Multiline<T>;
   const factory ValueFailure.listTooLong({
     @required T failedValue,
-    @required T max,
+    @required int max,
   }) = ListTooLong<T>;
   const factory ValueFailure.invalidEmail({
     @required T failedValue,

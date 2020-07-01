@@ -32,7 +32,7 @@ class _$ValueFailureTearOff {
     );
   }
 
-  ListTooLong<T> listTooLong<T>({@required T failedValue, @required T max}) {
+  ListTooLong<T> listTooLong<T>({@required T failedValue, @required int max}) {
     return ListTooLong<T>(
       failedValue: failedValue,
       max: max,
@@ -63,7 +63,7 @@ mixin _$ValueFailure<T> {
     @required Result exceedingLength(T failedValue, int max),
     @required Result empty(T failedValue),
     @required Result multiline(T failedValue),
-    @required Result listTooLong(T failedValue, T max),
+    @required Result listTooLong(T failedValue, int max),
     @required Result invalidEmail(T failedValue),
     @required Result shortPassword(T failedValue),
   });
@@ -72,7 +72,7 @@ mixin _$ValueFailure<T> {
     Result exceedingLength(T failedValue, int max),
     Result empty(T failedValue),
     Result multiline(T failedValue),
-    Result listTooLong(T failedValue, T max),
+    Result listTooLong(T failedValue, int max),
     Result invalidEmail(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
@@ -200,7 +200,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     @required Result exceedingLength(T failedValue, int max),
     @required Result empty(T failedValue),
     @required Result multiline(T failedValue),
-    @required Result listTooLong(T failedValue, T max),
+    @required Result listTooLong(T failedValue, int max),
     @required Result invalidEmail(T failedValue),
     @required Result shortPassword(T failedValue),
   }) {
@@ -219,7 +219,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     Result exceedingLength(T failedValue, int max),
     Result empty(T failedValue),
     Result multiline(T failedValue),
-    Result listTooLong(T failedValue, T max),
+    Result listTooLong(T failedValue, int max),
     Result invalidEmail(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
@@ -341,7 +341,7 @@ class _$Empty<T> implements Empty<T> {
     @required Result exceedingLength(T failedValue, int max),
     @required Result empty(T failedValue),
     @required Result multiline(T failedValue),
-    @required Result listTooLong(T failedValue, T max),
+    @required Result listTooLong(T failedValue, int max),
     @required Result invalidEmail(T failedValue),
     @required Result shortPassword(T failedValue),
   }) {
@@ -360,7 +360,7 @@ class _$Empty<T> implements Empty<T> {
     Result exceedingLength(T failedValue, int max),
     Result empty(T failedValue),
     Result multiline(T failedValue),
-    Result listTooLong(T failedValue, T max),
+    Result listTooLong(T failedValue, int max),
     Result invalidEmail(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
@@ -483,7 +483,7 @@ class _$Multiline<T> implements Multiline<T> {
     @required Result exceedingLength(T failedValue, int max),
     @required Result empty(T failedValue),
     @required Result multiline(T failedValue),
-    @required Result listTooLong(T failedValue, T max),
+    @required Result listTooLong(T failedValue, int max),
     @required Result invalidEmail(T failedValue),
     @required Result shortPassword(T failedValue),
   }) {
@@ -502,7 +502,7 @@ class _$Multiline<T> implements Multiline<T> {
     Result exceedingLength(T failedValue, int max),
     Result empty(T failedValue),
     Result multiline(T failedValue),
-    Result listTooLong(T failedValue, T max),
+    Result listTooLong(T failedValue, int max),
     Result invalidEmail(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
@@ -567,7 +567,7 @@ abstract class $ListTooLongCopyWith<T, $Res>
           ListTooLong<T> value, $Res Function(ListTooLong<T>) then) =
       _$ListTooLongCopyWithImpl<T, $Res>;
   @override
-  $Res call({T failedValue, T max});
+  $Res call({T failedValue, int max});
 }
 
 class _$ListTooLongCopyWithImpl<T, $Res>
@@ -588,7 +588,7 @@ class _$ListTooLongCopyWithImpl<T, $Res>
     return _then(ListTooLong<T>(
       failedValue:
           failedValue == freezed ? _value.failedValue : failedValue as T,
-      max: max == freezed ? _value.max : max as T,
+      max: max == freezed ? _value.max : max as int,
     ));
   }
 }
@@ -601,7 +601,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
   @override
   final T failedValue;
   @override
-  final T max;
+  final int max;
 
   @override
   String toString() {
@@ -635,7 +635,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     @required Result exceedingLength(T failedValue, int max),
     @required Result empty(T failedValue),
     @required Result multiline(T failedValue),
-    @required Result listTooLong(T failedValue, T max),
+    @required Result listTooLong(T failedValue, int max),
     @required Result invalidEmail(T failedValue),
     @required Result shortPassword(T failedValue),
   }) {
@@ -654,7 +654,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     Result exceedingLength(T failedValue, int max),
     Result empty(T failedValue),
     Result multiline(T failedValue),
-    Result listTooLong(T failedValue, T max),
+    Result listTooLong(T failedValue, int max),
     Result invalidEmail(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
@@ -705,12 +705,12 @@ class _$ListTooLong<T> implements ListTooLong<T> {
 }
 
 abstract class ListTooLong<T> implements ValueFailure<T> {
-  const factory ListTooLong({@required T failedValue, @required T max}) =
+  const factory ListTooLong({@required T failedValue, @required int max}) =
       _$ListTooLong<T>;
 
   @override
   T get failedValue;
-  T get max;
+  int get max;
   @override
   $ListTooLongCopyWith<T, ListTooLong<T>> get copyWith;
 }
@@ -780,7 +780,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     @required Result exceedingLength(T failedValue, int max),
     @required Result empty(T failedValue),
     @required Result multiline(T failedValue),
-    @required Result listTooLong(T failedValue, T max),
+    @required Result listTooLong(T failedValue, int max),
     @required Result invalidEmail(T failedValue),
     @required Result shortPassword(T failedValue),
   }) {
@@ -799,7 +799,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     Result exceedingLength(T failedValue, int max),
     Result empty(T failedValue),
     Result multiline(T failedValue),
-    Result listTooLong(T failedValue, T max),
+    Result listTooLong(T failedValue, int max),
     Result invalidEmail(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
@@ -923,7 +923,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     @required Result exceedingLength(T failedValue, int max),
     @required Result empty(T failedValue),
     @required Result multiline(T failedValue),
-    @required Result listTooLong(T failedValue, T max),
+    @required Result listTooLong(T failedValue, int max),
     @required Result invalidEmail(T failedValue),
     @required Result shortPassword(T failedValue),
   }) {
@@ -942,7 +942,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     Result exceedingLength(T failedValue, int max),
     Result empty(T failedValue),
     Result multiline(T failedValue),
-    Result listTooLong(T failedValue, T max),
+    Result listTooLong(T failedValue, int max),
     Result invalidEmail(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
