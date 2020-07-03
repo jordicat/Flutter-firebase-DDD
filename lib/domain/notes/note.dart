@@ -7,7 +7,7 @@ import '../core/value_objects.dart';
 import 'todo_item.dart';
 import 'value_objects.dart';
 
-part 'notes.freezed.dart';
+part 'note.freezed.dart';
 
 @freezed
 abstract class Note implements _$Note {
@@ -16,14 +16,14 @@ abstract class Note implements _$Note {
   const factory Note({
     @required UniqueId id,
     @required NoteBody body,
-    @required NoteColor noteColor,
+    @required NoteColor color,
     @required List3<TodoItem> todos,
   }) = _Note;
 
   factory Note.empty() => Note(
         id: UniqueId(),
         body: NoteBody(''),
-        noteColor: NoteColor(NoteColor.predefinedColors[0]),
+        color: NoteColor(NoteColor.predefinedColors[0]),
         todos: List3(emptyList()),
       );
 
