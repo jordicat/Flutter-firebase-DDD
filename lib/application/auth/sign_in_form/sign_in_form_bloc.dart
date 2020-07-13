@@ -1,20 +1,19 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_firebase_ddd_notes/domain/auth/i_auth_facade.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter_firebase_ddd_notes/domain/auth/auth_failure.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_firebase_ddd_notes/domain/auth/value_objects.dart';
+import 'package:flutter_firebase_ddd_notes/domain/auth/i_auth_facade.dart';
 
-import '../../../domain/auth/auth_failure.dart';
-import '../../../domain/auth/value_objects.dart';
-
-part 'sign_in_form_bloc.freezed.dart';
 part 'sign_in_form_event.dart';
 part 'sign_in_form_state.dart';
+
+part 'sign_in_form_bloc.freezed.dart';
 
 @injectable
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
@@ -32,13 +31,13 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     yield* event.map(
       emailChanged: (e) async* {
         yield state.copyWith(
-          emailAddress: EmailAddress(e.emailString),
+          emailAddress: EmailAddress(e.emailStr),
           authFailureOrSuccessOption: none(),
         );
       },
       passwordChanged: (e) async* {
         yield state.copyWith(
-          password: Password(e.passwordString),
+          password: Password(e.passwordStr),
           authFailureOrSuccessOption: none(),
         );
       },
@@ -84,14 +83,16 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         authFailureOrSuccessOption: none(),
       );
 
-      failureOrSuccess = await forwardedCall();
+      failureOrSuccess = await forwardedCall(
+        emailAddress: state.emailAddress,
+        password: state.password,
+      );
     }
 
     yield state.copyWith(
       isSubmitting: false,
       showErrorMessages: true,
       authFailureOrSuccessOption: optionOf(failureOrSuccess),
-      // failureOrSuccess == null ? none() : some(failureOrSuccess),
     );
   }
 }

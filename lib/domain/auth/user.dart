@@ -1,5 +1,5 @@
-import 'package:flutter_firebase_ddd_notes/domain/core/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter_firebase_ddd_notes/domain/core/value_objects.dart';
 
 part 'user.freezed.dart';
 

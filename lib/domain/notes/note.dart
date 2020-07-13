@@ -1,11 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_firebase_ddd_notes/domain/core/failures.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kt_dart/kt.dart';
-
-import '../core/value_objects.dart';
-import 'todo_item.dart';
-import 'value_objects.dart';
+import 'package:kt_dart/collection.dart';
+import 'package:flutter_firebase_ddd_notes/domain/core/failures.dart';
+import 'package:flutter_firebase_ddd_notes/domain/core/value_objects.dart';
+import 'package:flutter_firebase_ddd_notes/domain/notes/todo_item.dart';
+import 'package:flutter_firebase_ddd_notes/domain/notes/value_objects.dart';
 
 part 'note.freezed.dart';
 
@@ -40,6 +39,6 @@ abstract class Note implements _$Note {
               .getOrElse(0, (_) => none())
               .fold(() => right(unit), (f) => left(f)),
         )
-        .fold((f) => some(f), (r) => none());
+        .fold((f) => some(f), (_) => none());
   }
 }

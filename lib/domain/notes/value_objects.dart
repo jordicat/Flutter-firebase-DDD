@@ -1,11 +1,11 @@
 import 'dart:ui';
 
 import 'package:dartz/dartz.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:flutter_firebase_ddd_notes/domain/core/failures.dart';
 import 'package:flutter_firebase_ddd_notes/domain/core/value_objects.dart';
 import 'package:flutter_firebase_ddd_notes/domain/core/value_transformers.dart';
 import 'package:flutter_firebase_ddd_notes/domain/core/value_validators.dart';
-import 'package:kt_dart/kt.dart';
 
 class NoteBody extends ValueObject<String> {
   @override
@@ -15,8 +15,9 @@ class NoteBody extends ValueObject<String> {
 
   factory NoteBody(String input) {
     assert(input != null);
-    return NoteBody._(validateMaxStringLength(input, maxLength)
-        .flatMap(validateStringNotEmpty));
+    return NoteBody._(
+      validateMaxStringLength(input, maxLength).flatMap(validateStringNotEmpty),
+    );
   }
 
   const NoteBody._(this.value);

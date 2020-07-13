@@ -126,7 +126,7 @@ class __$NoteDtoCopyWithImpl<$Res> extends _$NoteDtoCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
-class _$_NoteDto extends _NoteDto with DiagnosticableTreeMixin {
+class _$_NoteDto extends _NoteDto {
   const _$_NoteDto(
       {@JsonKey(ignore: true) this.id,
       @required this.body,
@@ -156,20 +156,8 @@ class _$_NoteDto extends _NoteDto with DiagnosticableTreeMixin {
   final FieldValue serverTimeStamp;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NoteDto(id: $id, body: $body, color: $color, todos: $todos, serverTimeStamp: $serverTimeStamp)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'NoteDto'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('body', body))
-      ..add(DiagnosticsProperty('color', color))
-      ..add(DiagnosticsProperty('todos', todos))
-      ..add(DiagnosticsProperty('serverTimeStamp', serverTimeStamp));
   }
 
   @override
@@ -326,7 +314,7 @@ class __$TodoItemDtoCopyWithImpl<$Res> extends _$TodoItemDtoCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
-class _$_TodoItemDto extends _TodoItemDto with DiagnosticableTreeMixin {
+class _$_TodoItemDto extends _TodoItemDto {
   const _$_TodoItemDto(
       {@required this.id, @required this.name, @required this.done})
       : assert(id != null),
@@ -345,18 +333,8 @@ class _$_TodoItemDto extends _TodoItemDto with DiagnosticableTreeMixin {
   final bool done;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'TodoItemDto(id: $id, name: $name, done: $done)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'TodoItemDto'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('done', done));
   }
 
   @override

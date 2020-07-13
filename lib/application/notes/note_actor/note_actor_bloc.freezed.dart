@@ -201,18 +201,18 @@ class _$NoteActorStateTearOff {
     return const _Initial();
   }
 
-  ActionInProgress actionInProgress() {
-    return const ActionInProgress();
+  _ActionInProgress actionInProgress() {
+    return const _ActionInProgress();
   }
 
-  DeleteFailure deleteFailure(NoteFailure noteFailure) {
-    return DeleteFailure(
+  _DeleteFailure deleteFailure(NoteFailure noteFailure) {
+    return _DeleteFailure(
       noteFailure,
     );
   }
 
-  DeleteSuccess deleteSuccess() {
-    return const DeleteSuccess();
+  _DeleteSuccess deleteSuccess() {
+    return const _DeleteSuccess();
   }
 }
 
@@ -238,16 +238,16 @@ mixin _$NoteActorState {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
-    @required Result actionInProgress(ActionInProgress value),
-    @required Result deleteFailure(DeleteFailure value),
-    @required Result deleteSuccess(DeleteSuccess value),
+    @required Result actionInProgress(_ActionInProgress value),
+    @required Result deleteFailure(_DeleteFailure value),
+    @required Result deleteSuccess(_DeleteSuccess value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
-    Result actionInProgress(ActionInProgress value),
-    Result deleteFailure(DeleteFailure value),
-    Result deleteSuccess(DeleteSuccess value),
+    Result actionInProgress(_ActionInProgress value),
+    Result deleteFailure(_DeleteFailure value),
+    Result deleteSuccess(_DeleteSuccess value),
     @required Result orElse(),
   });
 }
@@ -332,9 +332,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
-    @required Result actionInProgress(ActionInProgress value),
-    @required Result deleteFailure(DeleteFailure value),
-    @required Result deleteSuccess(DeleteSuccess value),
+    @required Result actionInProgress(_ActionInProgress value),
+    @required Result deleteFailure(_DeleteFailure value),
+    @required Result deleteSuccess(_DeleteSuccess value),
   }) {
     assert(initial != null);
     assert(actionInProgress != null);
@@ -347,9 +347,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
-    Result actionInProgress(ActionInProgress value),
-    Result deleteFailure(DeleteFailure value),
-    Result deleteSuccess(DeleteSuccess value),
+    Result actionInProgress(_ActionInProgress value),
+    Result deleteFailure(_DeleteFailure value),
+    Result deleteSuccess(_DeleteSuccess value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -364,25 +364,25 @@ abstract class _Initial implements NoteActorState {
   const factory _Initial() = _$_Initial;
 }
 
-abstract class $ActionInProgressCopyWith<$Res> {
-  factory $ActionInProgressCopyWith(
-          ActionInProgress value, $Res Function(ActionInProgress) then) =
-      _$ActionInProgressCopyWithImpl<$Res>;
+abstract class _$ActionInProgressCopyWith<$Res> {
+  factory _$ActionInProgressCopyWith(
+          _ActionInProgress value, $Res Function(_ActionInProgress) then) =
+      __$ActionInProgressCopyWithImpl<$Res>;
 }
 
-class _$ActionInProgressCopyWithImpl<$Res>
+class __$ActionInProgressCopyWithImpl<$Res>
     extends _$NoteActorStateCopyWithImpl<$Res>
-    implements $ActionInProgressCopyWith<$Res> {
-  _$ActionInProgressCopyWithImpl(
-      ActionInProgress _value, $Res Function(ActionInProgress) _then)
-      : super(_value, (v) => _then(v as ActionInProgress));
+    implements _$ActionInProgressCopyWith<$Res> {
+  __$ActionInProgressCopyWithImpl(
+      _ActionInProgress _value, $Res Function(_ActionInProgress) _then)
+      : super(_value, (v) => _then(v as _ActionInProgress));
 
   @override
-  ActionInProgress get _value => super._value as ActionInProgress;
+  _ActionInProgress get _value => super._value as _ActionInProgress;
 }
 
-class _$ActionInProgress implements ActionInProgress {
-  const _$ActionInProgress();
+class _$_ActionInProgress implements _ActionInProgress {
+  const _$_ActionInProgress();
 
   @override
   String toString() {
@@ -391,7 +391,7 @@ class _$ActionInProgress implements ActionInProgress {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ActionInProgress);
+    return identical(this, other) || (other is _ActionInProgress);
   }
 
   @override
@@ -432,9 +432,9 @@ class _$ActionInProgress implements ActionInProgress {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
-    @required Result actionInProgress(ActionInProgress value),
-    @required Result deleteFailure(DeleteFailure value),
-    @required Result deleteSuccess(DeleteSuccess value),
+    @required Result actionInProgress(_ActionInProgress value),
+    @required Result deleteFailure(_DeleteFailure value),
+    @required Result deleteSuccess(_DeleteSuccess value),
   }) {
     assert(initial != null);
     assert(actionInProgress != null);
@@ -447,9 +447,9 @@ class _$ActionInProgress implements ActionInProgress {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
-    Result actionInProgress(ActionInProgress value),
-    Result deleteFailure(DeleteFailure value),
-    Result deleteSuccess(DeleteSuccess value),
+    Result actionInProgress(_ActionInProgress value),
+    Result deleteFailure(_DeleteFailure value),
+    Result deleteSuccess(_DeleteSuccess value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -460,34 +460,34 @@ class _$ActionInProgress implements ActionInProgress {
   }
 }
 
-abstract class ActionInProgress implements NoteActorState {
-  const factory ActionInProgress() = _$ActionInProgress;
+abstract class _ActionInProgress implements NoteActorState {
+  const factory _ActionInProgress() = _$_ActionInProgress;
 }
 
-abstract class $DeleteFailureCopyWith<$Res> {
-  factory $DeleteFailureCopyWith(
-          DeleteFailure value, $Res Function(DeleteFailure) then) =
-      _$DeleteFailureCopyWithImpl<$Res>;
+abstract class _$DeleteFailureCopyWith<$Res> {
+  factory _$DeleteFailureCopyWith(
+          _DeleteFailure value, $Res Function(_DeleteFailure) then) =
+      __$DeleteFailureCopyWithImpl<$Res>;
   $Res call({NoteFailure noteFailure});
 
   $NoteFailureCopyWith<$Res> get noteFailure;
 }
 
-class _$DeleteFailureCopyWithImpl<$Res>
+class __$DeleteFailureCopyWithImpl<$Res>
     extends _$NoteActorStateCopyWithImpl<$Res>
-    implements $DeleteFailureCopyWith<$Res> {
-  _$DeleteFailureCopyWithImpl(
-      DeleteFailure _value, $Res Function(DeleteFailure) _then)
-      : super(_value, (v) => _then(v as DeleteFailure));
+    implements _$DeleteFailureCopyWith<$Res> {
+  __$DeleteFailureCopyWithImpl(
+      _DeleteFailure _value, $Res Function(_DeleteFailure) _then)
+      : super(_value, (v) => _then(v as _DeleteFailure));
 
   @override
-  DeleteFailure get _value => super._value as DeleteFailure;
+  _DeleteFailure get _value => super._value as _DeleteFailure;
 
   @override
   $Res call({
     Object noteFailure = freezed,
   }) {
-    return _then(DeleteFailure(
+    return _then(_DeleteFailure(
       noteFailure == freezed ? _value.noteFailure : noteFailure as NoteFailure,
     ));
   }
@@ -503,8 +503,8 @@ class _$DeleteFailureCopyWithImpl<$Res>
   }
 }
 
-class _$DeleteFailure implements DeleteFailure {
-  const _$DeleteFailure(this.noteFailure) : assert(noteFailure != null);
+class _$_DeleteFailure implements _DeleteFailure {
+  const _$_DeleteFailure(this.noteFailure) : assert(noteFailure != null);
 
   @override
   final NoteFailure noteFailure;
@@ -517,7 +517,7 @@ class _$DeleteFailure implements DeleteFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DeleteFailure &&
+        (other is _DeleteFailure &&
             (identical(other.noteFailure, noteFailure) ||
                 const DeepCollectionEquality()
                     .equals(other.noteFailure, noteFailure)));
@@ -528,8 +528,8 @@ class _$DeleteFailure implements DeleteFailure {
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(noteFailure);
 
   @override
-  $DeleteFailureCopyWith<DeleteFailure> get copyWith =>
-      _$DeleteFailureCopyWithImpl<DeleteFailure>(this, _$identity);
+  _$DeleteFailureCopyWith<_DeleteFailure> get copyWith =>
+      __$DeleteFailureCopyWithImpl<_DeleteFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -566,9 +566,9 @@ class _$DeleteFailure implements DeleteFailure {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
-    @required Result actionInProgress(ActionInProgress value),
-    @required Result deleteFailure(DeleteFailure value),
-    @required Result deleteSuccess(DeleteSuccess value),
+    @required Result actionInProgress(_ActionInProgress value),
+    @required Result deleteFailure(_DeleteFailure value),
+    @required Result deleteSuccess(_DeleteSuccess value),
   }) {
     assert(initial != null);
     assert(actionInProgress != null);
@@ -581,9 +581,9 @@ class _$DeleteFailure implements DeleteFailure {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
-    Result actionInProgress(ActionInProgress value),
-    Result deleteFailure(DeleteFailure value),
-    Result deleteSuccess(DeleteSuccess value),
+    Result actionInProgress(_ActionInProgress value),
+    Result deleteFailure(_DeleteFailure value),
+    Result deleteSuccess(_DeleteSuccess value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -594,32 +594,32 @@ class _$DeleteFailure implements DeleteFailure {
   }
 }
 
-abstract class DeleteFailure implements NoteActorState {
-  const factory DeleteFailure(NoteFailure noteFailure) = _$DeleteFailure;
+abstract class _DeleteFailure implements NoteActorState {
+  const factory _DeleteFailure(NoteFailure noteFailure) = _$_DeleteFailure;
 
   NoteFailure get noteFailure;
-  $DeleteFailureCopyWith<DeleteFailure> get copyWith;
+  _$DeleteFailureCopyWith<_DeleteFailure> get copyWith;
 }
 
-abstract class $DeleteSuccessCopyWith<$Res> {
-  factory $DeleteSuccessCopyWith(
-          DeleteSuccess value, $Res Function(DeleteSuccess) then) =
-      _$DeleteSuccessCopyWithImpl<$Res>;
+abstract class _$DeleteSuccessCopyWith<$Res> {
+  factory _$DeleteSuccessCopyWith(
+          _DeleteSuccess value, $Res Function(_DeleteSuccess) then) =
+      __$DeleteSuccessCopyWithImpl<$Res>;
 }
 
-class _$DeleteSuccessCopyWithImpl<$Res>
+class __$DeleteSuccessCopyWithImpl<$Res>
     extends _$NoteActorStateCopyWithImpl<$Res>
-    implements $DeleteSuccessCopyWith<$Res> {
-  _$DeleteSuccessCopyWithImpl(
-      DeleteSuccess _value, $Res Function(DeleteSuccess) _then)
-      : super(_value, (v) => _then(v as DeleteSuccess));
+    implements _$DeleteSuccessCopyWith<$Res> {
+  __$DeleteSuccessCopyWithImpl(
+      _DeleteSuccess _value, $Res Function(_DeleteSuccess) _then)
+      : super(_value, (v) => _then(v as _DeleteSuccess));
 
   @override
-  DeleteSuccess get _value => super._value as DeleteSuccess;
+  _DeleteSuccess get _value => super._value as _DeleteSuccess;
 }
 
-class _$DeleteSuccess implements DeleteSuccess {
-  const _$DeleteSuccess();
+class _$_DeleteSuccess implements _DeleteSuccess {
+  const _$_DeleteSuccess();
 
   @override
   String toString() {
@@ -628,7 +628,7 @@ class _$DeleteSuccess implements DeleteSuccess {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is DeleteSuccess);
+    return identical(this, other) || (other is _DeleteSuccess);
   }
 
   @override
@@ -669,9 +669,9 @@ class _$DeleteSuccess implements DeleteSuccess {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
-    @required Result actionInProgress(ActionInProgress value),
-    @required Result deleteFailure(DeleteFailure value),
-    @required Result deleteSuccess(DeleteSuccess value),
+    @required Result actionInProgress(_ActionInProgress value),
+    @required Result deleteFailure(_DeleteFailure value),
+    @required Result deleteSuccess(_DeleteSuccess value),
   }) {
     assert(initial != null);
     assert(actionInProgress != null);
@@ -684,9 +684,9 @@ class _$DeleteSuccess implements DeleteSuccess {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
-    Result actionInProgress(ActionInProgress value),
-    Result deleteFailure(DeleteFailure value),
-    Result deleteSuccess(DeleteSuccess value),
+    Result actionInProgress(_ActionInProgress value),
+    Result deleteFailure(_DeleteFailure value),
+    Result deleteSuccess(_DeleteSuccess value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -697,6 +697,6 @@ class _$DeleteSuccess implements DeleteSuccess {
   }
 }
 
-abstract class DeleteSuccess implements NoteActorState {
-  const factory DeleteSuccess() = _$DeleteSuccess;
+abstract class _DeleteSuccess implements NoteActorState {
+  const factory _DeleteSuccess() = _$_DeleteSuccess;
 }

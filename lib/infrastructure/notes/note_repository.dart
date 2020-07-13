@@ -1,15 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_firebase_ddd_notes/domain/notes/i_note_repository.dart';
 import 'package:injectable/injectable.dart';
+import 'package:dartz/dartz.dart';
+import 'package:kt_dart/kt.dart';
+import 'package:flutter_firebase_ddd_notes/domain/notes/i_note_repository.dart';
 import 'package:flutter_firebase_ddd_notes/domain/notes/note_failure.dart';
 import 'package:flutter_firebase_ddd_notes/domain/notes/note.dart';
 import 'package:flutter_firebase_ddd_notes/infrastructure/core/firestore_helpers.dart';
-import 'package:kt_dart/kt.dart';
+import 'package:flutter_firebase_ddd_notes/infrastructure/notes/note_dtos.dart';
 import 'package:rxdart/rxdart.dart';
-
-import 'note_dtos.dart';
 
 @LazySingleton(as: INoteRepository)
 class NoteRepository implements INoteRepository {
@@ -19,7 +18,6 @@ class NoteRepository implements INoteRepository {
 
   @override
   Stream<Either<NoteFailure, KtList<Note>>> watchAll() async* {
-    // users/{user ID}/notes/{note ID}/
     final userDoc = await _firestore.userDocument();
     yield* userDoc.noteCollection
         .orderBy('serverTimeStamp', descending: true)
@@ -54,8 +52,8 @@ class NoteRepository implements INoteRepository {
         .map(
           (notes) => right<NoteFailure, KtList<Note>>(
             notes
-                .where((notes) =>
-                    notes.todos.getOrCrash().any((todoItem) => !todoItem.done))
+                .where((note) =>
+                    note.todos.getOrCrash().any((todoItem) => !todoItem.done))
                 .toImmutableList(),
           ),
         )
@@ -81,10 +79,9 @@ class NoteRepository implements INoteRepository {
 
       return right(unit);
     } on PlatformException catch (e) {
-      if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
+      if (e.message.contains('PERMISSION_DENIED')) {
         return left(const NoteFailure.insufficientPermission());
       } else {
-        // log.error(e.toString());
         return left(const NoteFailure.unexpected());
       }
     }
@@ -102,12 +99,11 @@ class NoteRepository implements INoteRepository {
 
       return right(unit);
     } on PlatformException catch (e) {
-      if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
+      if (e.message.contains('PERMISSION_DENIED')) {
         return left(const NoteFailure.insufficientPermission());
       } else if (e.message.contains('NOT_FOUND')) {
         return left(const NoteFailure.unableToUpdate());
       } else {
-        // log.error(e.toString());
         return left(const NoteFailure.unexpected());
       }
     }
@@ -117,18 +113,17 @@ class NoteRepository implements INoteRepository {
   Future<Either<NoteFailure, Unit>> delete(Note note) async {
     try {
       final userDoc = await _firestore.userDocument();
-      final noteDto = NoteDto.fromDomain(note);
+      final noteId = note.id.getOrCrash();
 
-      await userDoc.noteCollection.document(noteDto.id).delete();
+      await userDoc.noteCollection.document(noteId).delete();
 
       return right(unit);
     } on PlatformException catch (e) {
-      if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
+      if (e.message.contains('PERMISSION_DENIED')) {
         return left(const NoteFailure.insufficientPermission());
       } else if (e.message.contains('NOT_FOUND')) {
         return left(const NoteFailure.unableToUpdate());
       } else {
-        // log.error(e.toString());
         return left(const NoteFailure.unexpected());
       }
     }

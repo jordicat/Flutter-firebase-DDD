@@ -1,14 +1,12 @@
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter_firebase_ddd_notes/domain/core/value_objects.dart';
+import 'package:flutter_firebase_ddd_notes/domain/notes/note.dart';
+import 'package:flutter_firebase_ddd_notes/domain/notes/todo_item.dart';
+import 'package:flutter_firebase_ddd_notes/domain/notes/value_objects.dart';
 import 'package:kt_dart/kt.dart';
-
-import '../../domain/core/value_objects.dart';
-import '../../domain/notes/note.dart';
-import '../../domain/notes/todo_item.dart';
-import '../../domain/notes/value_objects.dart';
 
 part 'note_dtos.freezed.dart';
 part 'note_dtos.g.dart';
@@ -27,16 +25,17 @@ abstract class NoteDto implements _$NoteDto {
 
   factory NoteDto.fromDomain(Note note) {
     return NoteDto(
-        id: note.id.getOrCrash(),
-        body: note.body.getOrCrash(),
-        color: note.color.getOrCrash().value,
-        todos: note.todos
-            .getOrCrash()
-            .map(
-              (todoItem) => TodoItemDto.fromDomain(todoItem),
-            )
-            .asList(),
-        serverTimeStamp: FieldValue.serverTimestamp());
+      id: note.id.getOrCrash(),
+      body: note.body.getOrCrash(),
+      color: note.color.getOrCrash().value,
+      todos: note.todos
+          .getOrCrash()
+          .map(
+            (todoItem) => TodoItemDto.fromDomain(todoItem),
+          )
+          .asList(),
+      serverTimeStamp: FieldValue.serverTimestamp(),
+    );
   }
 
   Note toDomain() {
@@ -44,9 +43,7 @@ abstract class NoteDto implements _$NoteDto {
       id: UniqueId.fromUniqueString(id),
       body: NoteBody(body),
       color: NoteColor(Color(color)),
-      todos: List3(
-        todos.map((dto) => dto.toDomain()).toImmutableList(),
-      ),
+      todos: List3(todos.map((dto) => dto.toDomain()).toImmutableList()),
     );
   }
 

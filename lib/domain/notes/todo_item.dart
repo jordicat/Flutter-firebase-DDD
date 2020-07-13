@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_firebase_ddd_notes/domain/core/failures.dart';
 import 'package:flutter_firebase_ddd_notes/domain/core/value_objects.dart';
 import 'package:flutter_firebase_ddd_notes/domain/notes/value_objects.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'todo_item.freezed.dart';
 
@@ -23,9 +23,6 @@ abstract class TodoItem implements _$TodoItem {
       );
 
   Option<ValueFailure<dynamic>> get failureOption {
-    return name.value.fold(
-      (f) => some(f),
-      (_) => none(),
-    );
+    return name.value.fold((f) => some(f), (_) => none());
   }
 }

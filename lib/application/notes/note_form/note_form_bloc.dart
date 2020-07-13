@@ -1,19 +1,21 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
+import 'package:kt_dart/kt.dart';
+import 'package:meta/meta.dart';
 import 'package:flutter_firebase_ddd_notes/domain/notes/i_note_repository.dart';
 import 'package:flutter_firebase_ddd_notes/domain/notes/note.dart';
 import 'package:flutter_firebase_ddd_notes/domain/notes/note_failure.dart';
 import 'package:flutter_firebase_ddd_notes/domain/notes/value_objects.dart';
-import 'package:flutter_firebase_ddd_notes/presentation/notes/misc/todo_item_presentation_classes.dart';
+import 'package:flutter_firebase_ddd_notes/presentation/notes/note_form/misc/todo_item_presentation_classes.dart';
 
-part 'note_form_bloc.freezed.dart';
 part 'note_form_event.dart';
 part 'note_form_state.dart';
+part 'note_form_bloc.freezed.dart';
 
 @injectable
 class NoteFormBloc extends Bloc<NoteFormEvent, NoteFormState> {
@@ -25,17 +27,17 @@ class NoteFormBloc extends Bloc<NoteFormEvent, NoteFormState> {
   NoteFormState get initialState => NoteFormState.initial();
 
   @override
-  Stream<NoteFormState> mapEventToState(NoteFormEvent event) async* {
+  Stream<NoteFormState> mapEventToState(
+    NoteFormEvent event,
+  ) async* {
     yield* event.map(
       initialized: (e) async* {
         yield e.initialNoteOption.fold(
           () => state,
-          (initialNote) {
-            return state.copyWith(
-              note: initialNote,
-              isEditing: true,
-            );
-          },
+          (initialNote) => state.copyWith(
+            note: initialNote,
+            isEditing: true,
+          ),
         );
       },
       bodyChanged: (e) async* {
@@ -53,11 +55,7 @@ class NoteFormBloc extends Bloc<NoteFormEvent, NoteFormState> {
       todosChanged: (e) async* {
         yield state.copyWith(
           note: state.note.copyWith(
-            todos: List3(
-              e.todos.map(
-                (primitive) => primitive.toDomain(),
-              ),
-            ),
+            todos: List3(e.todos.map((primitive) => primitive.toDomain())),
           ),
           saveFailureOrSuccessOption: none(),
         );

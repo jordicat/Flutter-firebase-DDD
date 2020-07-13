@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
-
-import 'failures.dart';
+import 'package:flutter_firebase_ddd_notes/domain/auth/value_objects.dart';
+import 'package:flutter_firebase_ddd_notes/domain/core/failures.dart';
 
 Either<ValueFailure<String>, String> validateMaxStringLength(
   String input,

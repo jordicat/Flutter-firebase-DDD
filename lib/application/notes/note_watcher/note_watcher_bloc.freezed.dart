@@ -394,8 +394,8 @@ abstract class _NotesReceived implements NoteWatcherEvent {
 class _$NoteWatcherStateTearOff {
   const _$NoteWatcherStateTearOff();
 
-  Initial initial() {
-    return const Initial();
+  _Initial initial() {
+    return const _Initial();
   }
 
   _LoadInProgress loadInProgress() {
@@ -436,14 +436,14 @@ mixin _$NoteWatcherState {
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result initial(Initial value),
+    @required Result initial(_Initial value),
     @required Result loadInProgress(_LoadInProgress value),
     @required Result loadSuccess(_LoadSuccess value),
     @required Result loadFailure(_LoadFailure value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
+    Result initial(_Initial value),
     Result loadInProgress(_LoadInProgress value),
     Result loadSuccess(_LoadSuccess value),
     Result loadFailure(_LoadFailure value),
@@ -466,22 +466,22 @@ class _$NoteWatcherStateCopyWithImpl<$Res>
   final $Res Function(NoteWatcherState) _then;
 }
 
-abstract class $InitialCopyWith<$Res> {
-  factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
-      _$InitialCopyWithImpl<$Res>;
+abstract class _$InitialCopyWith<$Res> {
+  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
+      __$InitialCopyWithImpl<$Res>;
 }
 
-class _$InitialCopyWithImpl<$Res> extends _$NoteWatcherStateCopyWithImpl<$Res>
-    implements $InitialCopyWith<$Res> {
-  _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
-      : super(_value, (v) => _then(v as Initial));
+class __$InitialCopyWithImpl<$Res> extends _$NoteWatcherStateCopyWithImpl<$Res>
+    implements _$InitialCopyWith<$Res> {
+  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
+      : super(_value, (v) => _then(v as _Initial));
 
   @override
-  Initial get _value => super._value as Initial;
+  _Initial get _value => super._value as _Initial;
 }
 
-class _$Initial implements Initial {
-  const _$Initial();
+class _$_Initial implements _Initial {
+  const _$_Initial();
 
   @override
   String toString() {
@@ -490,7 +490,7 @@ class _$Initial implements Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Initial);
+    return identical(this, other) || (other is _Initial);
   }
 
   @override
@@ -530,7 +530,7 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result initial(Initial value),
+    @required Result initial(_Initial value),
     @required Result loadInProgress(_LoadInProgress value),
     @required Result loadSuccess(_LoadSuccess value),
     @required Result loadFailure(_LoadFailure value),
@@ -545,7 +545,7 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
+    Result initial(_Initial value),
     Result loadInProgress(_LoadInProgress value),
     Result loadSuccess(_LoadSuccess value),
     Result loadFailure(_LoadFailure value),
@@ -559,8 +559,8 @@ class _$Initial implements Initial {
   }
 }
 
-abstract class Initial implements NoteWatcherState {
-  const factory Initial() = _$Initial;
+abstract class _Initial implements NoteWatcherState {
+  const factory _Initial() = _$_Initial;
 }
 
 abstract class _$LoadInProgressCopyWith<$Res> {
@@ -630,7 +630,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result initial(Initial value),
+    @required Result initial(_Initial value),
     @required Result loadInProgress(_LoadInProgress value),
     @required Result loadSuccess(_LoadSuccess value),
     @required Result loadFailure(_LoadFailure value),
@@ -645,7 +645,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
+    Result initial(_Initial value),
     Result loadInProgress(_LoadInProgress value),
     Result loadSuccess(_LoadSuccess value),
     Result loadFailure(_LoadFailure value),
@@ -751,7 +751,7 @@ class _$_LoadSuccess implements _LoadSuccess {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result initial(Initial value),
+    @required Result initial(_Initial value),
     @required Result loadInProgress(_LoadInProgress value),
     @required Result loadSuccess(_LoadSuccess value),
     @required Result loadFailure(_LoadFailure value),
@@ -766,7 +766,7 @@ class _$_LoadSuccess implements _LoadSuccess {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
+    Result initial(_Initial value),
     Result loadInProgress(_LoadInProgress value),
     Result loadSuccess(_LoadSuccess value),
     Result loadFailure(_LoadFailure value),
@@ -888,7 +888,7 @@ class _$_LoadFailure implements _LoadFailure {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result initial(Initial value),
+    @required Result initial(_Initial value),
     @required Result loadInProgress(_LoadInProgress value),
     @required Result loadSuccess(_LoadSuccess value),
     @required Result loadFailure(_LoadFailure value),
@@ -903,7 +903,7 @@ class _$_LoadFailure implements _LoadFailure {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
+    Result initial(_Initial value),
     Result loadInProgress(_LoadInProgress value),
     Result loadSuccess(_LoadSuccess value),
     Result loadFailure(_LoadFailure value),

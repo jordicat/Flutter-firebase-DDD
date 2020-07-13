@@ -29,7 +29,6 @@ class Router extends RouterBase {
 
   @override
   Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    final args = settings.arguments;
     switch (settings.name) {
       case Routes.splashPage:
         return MaterialPageRoute<dynamic>(
@@ -37,12 +36,8 @@ class Router extends RouterBase {
           settings: settings,
         );
       case Routes.signInPage:
-        if (hasInvalidArgs<SignInPageArguments>(args)) {
-          return misTypedArgsRoute<SignInPageArguments>(args);
-        }
-        final typedArgs = args as SignInPageArguments ?? SignInPageArguments();
         return MaterialPageRoute<dynamic>(
-          builder: (context) => SignInPage(key: typedArgs.key),
+          builder: (context) => SignInPage(),
           settings: settings,
         );
       default:
@@ -52,27 +47,11 @@ class Router extends RouterBase {
 }
 
 // *************************************************************************
-// Arguments holder classes
-// **************************************************************************
-
-//SignInPage arguments holder class
-class SignInPageArguments {
-  final Key key;
-  SignInPageArguments({this.key});
-}
-
-// *************************************************************************
 // Navigation helper methods extension
 // **************************************************************************
 
 extension RouterNavigationHelperMethods on ExtendedNavigatorState {
   Future pushSplashPage() => pushNamed(Routes.splashPage);
 
-  Future pushSignInPage({
-    Key key,
-  }) =>
-      pushNamed(
-        Routes.signInPage,
-        arguments: SignInPageArguments(key: key),
-      );
+  Future pushSignInPage() => pushNamed(Routes.signInPage);
 }

@@ -2,13 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_firebase_ddd_notes/domain/auth/user.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../domain/auth/auth_failure.dart';
-import '../../domain/auth/i_auth_facade.dart';
-import '../../domain/auth/value_objects.dart';
+import 'package:flutter_firebase_ddd_notes/domain/auth/auth_failure.dart';
+import 'package:flutter_firebase_ddd_notes/domain/auth/i_auth_facade.dart';
+import 'package:flutter_firebase_ddd_notes/domain/auth/user.dart';
+import 'package:flutter_firebase_ddd_notes/domain/auth/value_objects.dart';
 import './firebase_user_mapper.dart';
 
 @LazySingleton(as: IAuthFacade)
@@ -22,16 +21,21 @@ class FirebaseAuthFacade implements IAuthFacade {
   );
 
   @override
+  Future<Option<User>> getSignedInUser() => _firebaseAuth
+      .currentUser()
+      .then((firebaseUser) => optionOf(firebaseUser?.toDomain()));
+
+  @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
     @required EmailAddress emailAddress,
     @required Password password,
   }) async {
-    final emailAddressString = emailAddress.getOrCrash();
-    final passwordString = password.getOrCrash();
+    final emailAddressStr = emailAddress.getOrCrash();
+    final passwordStr = password.getOrCrash();
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
-        email: emailAddressString,
-        password: passwordString,
+        email: emailAddressStr,
+        password: passwordStr,
       );
       return right(unit);
     } on PlatformException catch (e) {
@@ -48,12 +52,12 @@ class FirebaseAuthFacade implements IAuthFacade {
     @required EmailAddress emailAddress,
     @required Password password,
   }) async {
-    final emailAddressString = emailAddress.getOrCrash();
-    final passwordString = password.getOrCrash();
+    final emailAddressStr = emailAddress.getOrCrash();
+    final passwordStr = password.getOrCrash();
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
-        email: emailAddressString,
-        password: passwordString,
+        email: emailAddressStr,
+        password: passwordStr,
       );
       return right(unit);
     } on PlatformException catch (e) {
@@ -73,6 +77,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       if (googleUser == null) {
         return left(const AuthFailure.cancelledByUser());
       }
+
       final googleAuthentication = await googleUser.authentication;
 
       final authCredential = GoogleAuthProvider.getCredential(
@@ -80,18 +85,12 @@ class FirebaseAuthFacade implements IAuthFacade {
         accessToken: googleAuthentication.accessToken,
       );
 
-      return _firebaseAuth
-          .signInWithCredential(authCredential)
-          .then((r) => right(unit));
+      await _firebaseAuth.signInWithCredential(authCredential);
+      return right(unit);
     } on PlatformException catch (_) {
       return left(const AuthFailure.serverError());
     }
   }
-
-  @override
-  Future<Option<User>> getSignedInUser() => _firebaseAuth
-      .currentUser()
-      .then((firebaseUser) => optionOf(firebaseUser?.toDomain()));
 
   @override
   Future<void> signOut() => Future.wait([

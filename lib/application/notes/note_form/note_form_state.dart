@@ -3,8 +3,6 @@ part of 'note_form_bloc.dart';
 @freezed
 abstract class NoteFormState with _$NoteFormState {
   const factory NoteFormState({
-    // Unlike in SignInFormState, here we have an entity which we can readily use for validation
-    // instead of storing individual fields.
     @required Note note,
     @required bool showErrorMessages,
     @required bool isEditing,
