@@ -19,7 +19,7 @@ class SplashPage extends StatelessWidget {
       },
       child: const Scaffold(
         body: Center(
-          child: Text('Loading...'),
+          child: CircularProgressIndicator(),
         ),
       ),
     );

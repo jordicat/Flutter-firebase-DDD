@@ -9,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_firebase_ddd_notes/presentation/splash/splash_page.dart';
 import 'package:flutter_firebase_ddd_notes/presentation/sign_in/sign_in_page.dart';
-import 'package:flutter_firebase_ddd_notes/presentation/notes/notes_overview/notes_overview.dart';
+import 'package:flutter_firebase_ddd_notes/presentation/notes/notes_overview/notes_overview_page.dart';
 
 class Routes {
   static const String splashPage = '/';
@@ -46,10 +46,8 @@ class Router extends RouterBase {
       );
     },
     NotesOverviewPage: (RouteData data) {
-      var args = data.getArgs<NotesOverviewPageArguments>(
-          orElse: () => NotesOverviewPageArguments());
       return MaterialPageRoute<dynamic>(
-        builder: (context) => NotesOverviewPage(key: args.key),
+        builder: (context) => NotesOverviewPage(),
         settings: data,
       );
     },
@@ -65,21 +63,6 @@ extension RouterNavigationHelperMethods on ExtendedNavigatorState {
 
   Future<dynamic> pushSignInPage() => pushNamed<dynamic>(Routes.signInPage);
 
-  Future<dynamic> pushNotesOverviewPage({
-    Key key,
-  }) =>
-      pushNamed<dynamic>(
-        Routes.notesOverviewPage,
-        arguments: NotesOverviewPageArguments(key: key),
-      );
-}
-
-// *************************************************************************
-// Arguments holder classes
-// **************************************************************************
-
-//NotesOverviewPage arguments holder class
-class NotesOverviewPageArguments {
-  final Key key;
-  NotesOverviewPageArguments({this.key});
+  Future<dynamic> pushNotesOverviewPage() =>
+      pushNamed<dynamic>(Routes.notesOverviewPage);
 }

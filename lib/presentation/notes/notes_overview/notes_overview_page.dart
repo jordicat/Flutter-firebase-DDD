@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_ddd_notes/application/auth/auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_firebase_ddd_notes/application/auth/auth_bloc.dart';
 import 'package:flutter_firebase_ddd_notes/application/notes/note_actor/note_actor_bloc.dart';
 import 'package:flutter_firebase_ddd_notes/application/notes/note_watcher/note_watcher_bloc.dart';
 import 'package:flutter_firebase_ddd_notes/injection.dart';
@@ -10,8 +10,6 @@ import 'package:flutter_firebase_ddd_notes/presentation/notes/notes_overview/wid
 import 'package:flutter_firebase_ddd_notes/presentation/routes/router.gr.dart';
 
 class NotesOverviewPage extends StatelessWidget {
-  const NotesOverviewPage({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -26,13 +24,15 @@ class NotesOverviewPage extends StatelessWidget {
       ],
       child: MultiBlocListener(
         listeners: [
-          BlocListener<AuthBloc, AuthState>(listener: (context, state) {
-            state.maybeMap(
-              unauthenticated: (_) => ExtendedNavigator.of(context)
-                  .pushReplacementNamed(Routes.signInPage),
-              orElse: () {},
-            );
-          }),
+          BlocListener<AuthBloc, AuthState>(
+            listener: (context, state) {
+              state.maybeMap(
+                unauthenticated: (_) => ExtendedNavigator.of(context)
+                    .pushReplacementNamed(Routes.signInPage),
+                orElse: () {},
+              );
+            },
+          ),
           BlocListener<NoteActorBloc, NoteActorState>(
             listener: (context, state) {
               state.maybeMap(
@@ -41,17 +41,17 @@ class NotesOverviewPage extends StatelessWidget {
                     duration: const Duration(seconds: 5),
                     message: state.noteFailure.map(
                       unexpected: (_) =>
-                          'Unexpected error occured with deleting.',
+                          'Unexpected error occured while deleting, please contact support.',
                       insufficientPermission: (_) =>
-                          'Insufficient Permissions.',
-                      unableToUpdate: (_) => 'Unable to update',
+                          'Insufficient permissions ❌',
+                      unableToUpdate: (_) => 'Impossible error',
                     ),
                   ).show(context);
                 },
                 orElse: () {},
               );
             },
-          )
+          ),
         ],
         child: Scaffold(
           appBar: AppBar(
@@ -62,7 +62,7 @@ class NotesOverviewPage extends StatelessWidget {
                 context.bloc<AuthBloc>().add(const AuthEvent.signedOut());
               },
             ),
-            actions: [
+            actions: <Widget>[
               IconButton(
                 icon: const Icon(Icons.indeterminate_check_box),
                 onPressed: () {},
@@ -71,10 +71,11 @@ class NotesOverviewPage extends StatelessWidget {
           ),
           body: NotesOverviewBody(),
           floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                // TODO: Navigate to NoteFormPage
-              },
-              child: const Icon(Icons.add)),
+            onPressed: () {
+              // TODO: Navigate to NoteFormPage
+            },
+            child: const Icon(Icons.add),
+          ),
         ),
       ),
     );
