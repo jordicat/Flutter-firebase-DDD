@@ -36,12 +36,12 @@ class CriticalFailureDisplay extends StatelessWidget {
             },
             child: Row(
               mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(Icons.mail),
-                const SizedBox(
+              children: const [
+                Icon(Icons.mail),
+                SizedBox(
                   width: 4,
                 ),
-                const Text('I NEED HELP'),
+                Text('I NEED HELP'),
               ],
             ),
           )
