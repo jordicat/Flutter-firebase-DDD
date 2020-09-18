@@ -11,10 +11,10 @@ abstract class NoteFormState with _$NoteFormState {
   }) = _NoteFormState;
 
   factory NoteFormState.initial() => NoteFormState(
-        note: Note.empty(),
-        showErrorMessages: false,
-        isEditing: false,
-        isSaving: false,
-        saveFailureOrSuccessOption: none(),
-      );
+      note: Note.empty(),
+      showErrorMessages: false,
+      isEditing: false,
+      isSaving: false,
+      saveFailureOrSuccessOption:
+          some(left(const NoteFailure.insufficientPermission())));
 }
