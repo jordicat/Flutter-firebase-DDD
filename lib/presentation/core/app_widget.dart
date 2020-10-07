@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_ddd_notes/application/auth/auth_bloc.dart';
 import 'package:flutter_firebase_ddd_notes/injection.dart';
-import 'package:flutter_firebase_ddd_notes/presentation/routes/router.gr.dart';
+import 'package:flutter_firebase_ddd_notes/presentation/routes/router.gr.dart'
+    as r;
 
 class AppWidget extends StatelessWidget {
   @override
@@ -18,7 +19,7 @@ class AppWidget extends StatelessWidget {
       child: MaterialApp(
         title: 'Notes',
         debugShowCheckedModeBanner: false,
-        builder: ExtendedNavigator(router: Router()),
+        builder: ExtendedNavigator(router: r.Router()),
         theme: ThemeData.light().copyWith(
           primaryColor: Colors.green[800],
           accentColor: Colors.blueAccent,

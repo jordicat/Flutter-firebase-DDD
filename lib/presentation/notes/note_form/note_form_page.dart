@@ -9,11 +9,13 @@ import 'package:flutter_firebase_ddd_notes/presentation/notes/note_form/misc/tod
 import 'package:flutter_firebase_ddd_notes/presentation/notes/note_form/widgets/add_todo_tile_widget.dart';
 import 'package:flutter_firebase_ddd_notes/presentation/notes/note_form/widgets/body_field_widget.dart';
 import 'package:flutter_firebase_ddd_notes/presentation/notes/note_form/widgets/color_field_widget.dart';
-import 'package:flutter_firebase_ddd_notes/presentation/routes/router.gr.dart';
+import 'package:flutter_firebase_ddd_notes/presentation/routes/router.gr.dart'
+    as r;
 import 'package:provider/provider.dart';
 
 import '../../../domain/notes/note.dart';
 import '../../../injection.dart';
+import 'widgets/todo_list_widget.dart';
 
 class NoteFormPage extends StatelessWidget {
   final Note editedNote;
@@ -48,7 +50,7 @@ class NoteFormPage extends StatelessWidget {
                   ).show(context),
                   (_) {
                     ExtendedNavigator.of(context).popUntil((route) =>
-                        route.settings.name == Routes.notesOverviewPage);
+                        route.settings.name == r.Routes.notesOverviewPage);
                   },
                 );
               },
@@ -144,12 +146,15 @@ class NoteFormPageScaffold extends StatelessWidget {
           return ChangeNotifierProvider(
             create: (_) => FormTodos(),
             child: Form(
-              autovalidate: state.showErrorMessages,
+              autovalidateMode: state.showErrorMessages
+                  ? AutovalidateMode.always
+                  : AutovalidateMode.disabled,
               child: SingleChildScrollView(
                 child: Column(
                   children: const [
                     BodyField(),
                     ColorField(),
+                    TodoList(),
                     AddTodoTile(),
                   ],
                 ),

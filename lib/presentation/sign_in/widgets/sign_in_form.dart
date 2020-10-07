@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_ddd_notes/application/auth/auth_bloc.dart';
 import 'package:flutter_firebase_ddd_notes/application/auth/sign_in_form/sign_in_form_bloc.dart';
-import 'package:flutter_firebase_ddd_notes/presentation/routes/router.gr.dart';
+import 'package:flutter_firebase_ddd_notes/presentation/routes/router.gr.dart'
+    as r;
 
 class SignInForm extends StatelessWidget {
   @override
@@ -26,7 +27,7 @@ class SignInForm extends StatelessWidget {
               ).show(context);
             },
             (_) {
-              ExtendedNavigator.of(context).replace(Routes.notesOverviewPage);
+              ExtendedNavigator.of(context).replace(r.Routes.notesOverviewPage);
               context
                   .bloc<AuthBloc>()
                   .add(const AuthEvent.authCheckRequested());
@@ -36,7 +37,9 @@ class SignInForm extends StatelessWidget {
       },
       builder: (context, state) {
         return Form(
-          autovalidate: state.showErrorMessages,
+          autovalidateMode: state.showErrorMessages
+              ? AutovalidateMode.always
+              : AutovalidateMode.disabled,
           child: ListView(
             padding: const EdgeInsets.all(8),
             children: [

@@ -8,7 +8,8 @@ import 'package:flutter_firebase_ddd_notes/application/notes/note_watcher/note_w
 import 'package:flutter_firebase_ddd_notes/injection.dart';
 import 'package:flutter_firebase_ddd_notes/presentation/notes/notes_overview/widgets/notes_overview_body_widget.dart';
 import 'package:flutter_firebase_ddd_notes/presentation/notes/notes_overview/widgets/uncompleted_switch.dart';
-import 'package:flutter_firebase_ddd_notes/presentation/routes/router.gr.dart';
+import 'package:flutter_firebase_ddd_notes/presentation/routes/router.gr.dart'
+    as r;
 
 class NotesOverviewPage extends StatelessWidget {
   @override
@@ -29,7 +30,7 @@ class NotesOverviewPage extends StatelessWidget {
             listener: (context, state) {
               state.maybeMap(
                 unauthenticated: (_) =>
-                    ExtendedNavigator.of(context).replace(Routes.signInPage),
+                    ExtendedNavigator.of(context).replace(r.Routes.signInPage),
                 orElse: () {},
               );
             },

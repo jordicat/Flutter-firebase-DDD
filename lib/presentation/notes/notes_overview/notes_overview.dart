@@ -7,7 +7,8 @@ import 'package:flutter_firebase_ddd_notes/application/notes/note_actor/note_act
 import 'package:flutter_firebase_ddd_notes/application/notes/note_watcher/note_watcher_bloc.dart';
 import 'package:flutter_firebase_ddd_notes/injection.dart';
 import 'package:flutter_firebase_ddd_notes/presentation/notes/notes_overview/widgets/notes_overview_body_widget.dart';
-import 'package:flutter_firebase_ddd_notes/presentation/routes/router.gr.dart';
+import 'package:flutter_firebase_ddd_notes/presentation/routes/router.gr.dart'
+    as r;
 
 class NotesOverviewPage extends StatelessWidget {
   const NotesOverviewPage({Key key}) : super(key: key);
@@ -29,7 +30,7 @@ class NotesOverviewPage extends StatelessWidget {
           BlocListener<AuthBloc, AuthState>(listener: (context, state) {
             state.maybeMap(
               unauthenticated: (_) =>
-                  ExtendedNavigator.of(context).replace(Routes.signInPage),
+                  ExtendedNavigator.of(context).replace(r.Routes.signInPage),
               orElse: () {},
             );
           }),

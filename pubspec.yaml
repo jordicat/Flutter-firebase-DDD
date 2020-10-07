@@ -35,5 +35,8 @@ dev_dependencies:
   auto_route_generator: ^0.6.8
   json_serializable: ^3.4.1
 
+dependency_overrides:
+  analyzer: "0.39.15"
+
 flutter:
   uses-material-design: true
