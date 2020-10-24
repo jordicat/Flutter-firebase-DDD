@@ -6,7 +6,7 @@ import 'package:kt_dart/collection.dart';
 import '../../../../application/notes/note_actor/note_actor_bloc.dart';
 import '../../../../domain/notes/note.dart';
 import '../../../../domain/notes/todo_item.dart';
-import '../../../../presentation/routes/router.gr.dart' as r;
+import '../../../../presentation/routes/router.gr.dart' hide Router;
 
 class NoteCard extends StatelessWidget {
   final Note note;
